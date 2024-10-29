@@ -1,16 +1,30 @@
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider } from "react-router-dom";
 import "../shared/base.css";
 import { ReactQueryProvider } from "./provider/query-client";
-import { appRouter } from "./provider/router";
+
+// Import the generated route tree
+import { routeTree } from "../routeTree.gen";
+
+// Create a new router instance
+const router = createRouter({ routeTree });
+
+// Register the router instance for type safety
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}
+
+// Render the app
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ReactQueryProvider>
       <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-        <RouterProvider router={appRouter()} />
+        <RouterProvider router={router} />
       </GoogleOAuthProvider>
     </ReactQueryProvider>
   </StrictMode>
