@@ -33,7 +33,7 @@
 [optional footer(s)]
 */
 
-module.exports = {
+export default {
   extends: ["git-commit-emoji"],
   rules: {
     //* Type
