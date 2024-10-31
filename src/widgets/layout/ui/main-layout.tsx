@@ -1,5 +1,6 @@
 import BottomNavigation from "@/widgets/footer/ui/bottom-navigation";
-import { Outlet } from "react-router-dom";
+// import { Outlet } from "react-router-dom";
+import { Outlet } from "@tanstack/react-router";
 
 const MainLayout = () => {
   return (
@@ -8,6 +9,7 @@ const MainLayout = () => {
         <main className="flex-grow overflow-y-auto scrollbar-hide">
           <div className="p-4 pb-20">
             <Outlet />
+            {/* {children} */}
           </div>
         </main>
 

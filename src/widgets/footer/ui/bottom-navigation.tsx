@@ -8,7 +8,8 @@ import {
   UserRoundIcon,
 } from "lucide-react";
 import React from "react";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
+import { Link, useLocation } from "@tanstack/react-router";
 
 const navItems = [
   {
@@ -44,23 +45,29 @@ const navItems = [
 ];
 
 const BottomNavigation: React.FC = () => {
+  const { pathname } = useLocation();
+
   return (
     <nav className="bg-white border-t border-gray-200 sticky bottom-0 left-0 right-0">
       <div className="flex justify-around items-center h-16">
         {navItems.map((item) => (
-          <NavLink
+          <Link
             key={item.to}
             to={item.to}
-            className={({ isActive }) =>
-              cn(
-                "flex flex-col items-center gap-1.5",
-                isActive ? `text-[#FFA500]` : "text-gray-500"
-              )
-            }
+            className={cn(
+              "flex flex-col items-center gap-1.5",
+              pathname === item.to ? `text-[#FFA500]` : "text-gray-500"
+            )}
+            // className={({ isActive }) =>
+            //   cn(
+            //     "flex flex-col items-center gap-1.5",
+            //     isActive ? `text-[#FFA500]` : "text-gray-500"
+            //   )
+            // }
           >
             {item.icon}
             <span className={cn("text-xs")}>{item.label}</span>
-          </NavLink>
+          </Link>
         ))}
       </div>
     </nav>
