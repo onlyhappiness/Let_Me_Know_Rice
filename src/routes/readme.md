@@ -5,7 +5,7 @@
 # Layer priorities
 
 1. apps
-2. pages ✅
+2. pages(routes) ✅
 3. widgets
 4. features
 5. entities
